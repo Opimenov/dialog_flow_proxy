@@ -57,7 +57,7 @@ func NewDialogFlowClient(options AgentClientOptions) (error, *DialogFlowClient) 
 // Initialize a new HTTP request
 func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions RequestOptions) *Request {
 	headers := map[string]string{
-		"Authorization": "Bearer " + client.GetAccessToken(),
+		"Authorization": "Bearer " + client.GetAgentAccessToken(),
 		"Content-Type":  "application/json",
 		"Accept":        "application/json",
 	}
@@ -74,7 +74,7 @@ func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions Requ
 }
 
 // Takes natural language text and information as query parameters and returns information as JSON
-func (client *DialogFlowClient) QueryFindRequest(query AgentQuery) (QueryResponse, error) {
+func (client *DialogFlowClient) AgentQueryFindRequest(query AgentQuery) (QueryResponse, error) {
 	var response QueryResponse
 
 	if reflect.DeepEqual(query, AgentQuery{}) {
@@ -82,7 +82,7 @@ func (client *DialogFlowClient) QueryFindRequest(query AgentQuery) (QueryRespons
 	}
 
 	if query.V == "" {
-		query.V = client.GetApiVersion()
+		query.V = client.GetAgentApiVersion()
 	}
 
 	if query.Lang == "" {
@@ -96,7 +96,7 @@ func (client *DialogFlowClient) QueryFindRequest(query AgentQuery) (QueryRespons
 	request := NewDialogFlowRequest(
 		client,
 		RequestOptions{
-			URI:         client.GetBaseUrl() + "query",
+			URI:         client.GetAgentBaseUrl() + "query",
 			Method:      "GET",
 			Body:        nil,
 			QueryParams: query.ToMap(),
@@ -113,7 +113,7 @@ func (client *DialogFlowClient) QueryFindRequest(query AgentQuery) (QueryRespons
 }
 
 // Takes natural language text and information as JSON in the POST body and returns information as JSON
-func (client *DialogFlowClient) QueryCreateRequest(query AgentQuery) (QueryResponse, error) {
+func (client *DialogFlowClient) AgentQueryCreateRequest(query AgentQuery) (QueryResponse, error) {
 	var response QueryResponse
 
 	if reflect.DeepEqual(query, AgentQuery{}) {
@@ -123,7 +123,7 @@ func (client *DialogFlowClient) QueryCreateRequest(query AgentQuery) (QueryRespo
 	request := NewDialogFlowRequest(
 		client,
 		RequestOptions{
-			URI:    client.GetBaseUrl() + "query?v=" + client.GetApiVersion(),
+			URI:    client.GetAgentBaseUrl() + "query?v=" + client.GetAgentApiVersion(),
 			Method: "POST",
 			Body:   query,
 		},
@@ -138,12 +138,12 @@ func (client *DialogFlowClient) QueryCreateRequest(query AgentQuery) (QueryRespo
 	return response, err
 }
 // GET API.AI access token
-func (client *DialogFlowClient) GetAccessToken() string {
+func (client *DialogFlowClient) GetAgentAccessToken() string {
 	return client.accessToken
 }
 
 // GET dialog_flow version
-func (client *DialogFlowClient) GetApiVersion() string {
+func (client *DialogFlowClient) GetAgentApiVersion() string {
 	if client.apiVersion != "" {
 		return client.apiVersion
 	}
@@ -159,7 +159,7 @@ func (client *DialogFlowClient) GetApiLang() string {
 }
 
 // Get api base url
-func (client *DialogFlowClient) GetBaseUrl() string {
+func (client *DialogFlowClient) GetAgentBaseUrl() string {
 	if client.apiBaseUrl != "" {
 		return client.apiBaseUrl
 	}

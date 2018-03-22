@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	."leo/models"
 	."leo/callers"
 	"encoding/json"
 	."leo/models/caller_options"
@@ -30,9 +29,9 @@ func askAgent(text string) (answer string) {
 		client,
 		RequestOptions{
 			URI:
-			client.GetBaseUrl() +
+			client.GetAgentBaseUrl() +
 				"query?v=" +
-				client.GetApiVersion() +
+				client.GetAgentApiVersion() +
 				"&query="+text+"&lang=" +
 				client.GetApiLang() +
 				"&sessionId=7413f2c4-2b90-4c43-97a9-b692c6ee2ee5&" +
@@ -73,9 +72,9 @@ func main() {
 	//	client,
 	//	RequestOptions{
 	//		URI:
-	//			client.GetBaseUrl() +
+	//			client.GetAgentBaseUrl() +
 	//			"query?v=" +
-	//			client.GetApiVersion() +
+	//			client.GetAgentApiVersion() +
 	//			"&query="+text+"&lang=" +
 	//			client.GetApiLang() +
 	//			"&sessionId=7413f2c4-2b90-4c43-97a9-b692c6ee2ee5&" +

@@ -6,6 +6,6 @@ type EngineeringClientOptions struct {
 }
 
 const (
-	DEFAULT_BASE_URL  =  ""
-	API_KEY           =  ""
+	ENGINEERING_DEFAULT_BASE_URL  =  ""
+	ENGINEERING_API_KEY           =  ""
 )

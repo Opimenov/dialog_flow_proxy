@@ -29,9 +29,9 @@ func NewEngineeringClient(options EngineeringClientOptions) (error, *Engineering
 }
 
 // Initialize a new HTTP request
-func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions RequestOptions) *Request {
+func NewEngineeringRequest(client *EngineeringClient, overridedRequestOptions RequestOptions) *Request {
 	headers := map[string]string{
-		"Authorization": "Bearer " + client.GetAccessToken(),
+		"Authorization": "Bearer " + client.GetEngineeringAccessToken(),
 		"Content-Type":  "application/json",
 		"Accept":        "application/json",
 	}
@@ -48,29 +48,17 @@ func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions Requ
 }
 
 // Takes natural language text and information as query parameters and returns information as JSON
-func (client *DialogFlowClient) QueryFindRequest(query AgentQuery) (QueryResponse, error) {
+func (client *EngineeringClient) EngineeringQueryFindRequest(query AgentQuery) (QueryResponse, error) {
 	var response QueryResponse
 
 	if reflect.DeepEqual(query, AgentQuery{}) {
 		return response, errors.New("query cannot be empty")
 	}
 
-	if query.V == "" {
-		query.V = client.GetApiVersion()
-	}
-
-	if query.Lang == "" {
-		query.Lang = client.GetApiLang()
-	}
-
-	if query.SessionID == "" {
-		query.SessionID = client.GetSessionID()
-	}
-
-	request := NewDialogFlowRequest(
+	request := NewEngineeringRequest(
 		client,
 		RequestOptions{
-			URI:         client.GetBaseUrl() + "query",
+			URI:         client.GetEngineeringBaseUrl() + "query",
 			Method:      "GET",
 			Body:        nil,
 			QueryParams: query.ToMap(),
@@ -87,17 +75,17 @@ func (client *DialogFlowClient) QueryFindRequest(query AgentQuery) (QueryRespons
 }
 
 // Takes natural language text and information as JSON in the POST body and returns information as JSON
-func (client *DialogFlowClient) QueryCreateRequest(query AgentQuery) (QueryResponse, error) {
+func (client *EngineeringClient) QueryCreateRequest(query AgentQuery) (QueryResponse, error) {
 	var response QueryResponse
 
 	if reflect.DeepEqual(query, AgentQuery{}) {
 		return response, errors.New("query cannot be empty")
 	}
 
-	request := NewDialogFlowRequest(
+	request := NewEngineeringRequest(
 		client,
 		RequestOptions{
-			URI:    client.GetBaseUrl() + "query?v=" + client.GetApiVersion(),
+			URI:    client.GetEngineeringBaseUrl() + "query",
 			Method: "POST",
 			Body:   query,
 		},
@@ -113,40 +101,15 @@ func (client *DialogFlowClient) QueryCreateRequest(query AgentQuery) (QueryRespo
 }
 
 // GET API.AI access token
-func (client *DialogFlowClient) GetAccessToken() string {
+func (client *EngineeringClient) GetEngineeringAccessToken() string {
 	return client.accessToken
 }
 
-// GET dialog_flow version
-func (client *DialogFlowClient) GetApiVersion() string {
-	if client.apiVersion != "" {
-		return client.apiVersion
-	}
-	return DEFAULT_API_VERSION
-}
-
-// GET api language
-func (client *DialogFlowClient) GetApiLang() string {
-	if client.apiLang != "" {
-		return client.apiLang
-	}
-	return DEFAULT_CLIENT_LANG
-}
-
 // Get api base url
-func (client *DialogFlowClient) GetBaseUrl() string {
+func (client *EngineeringClient) GetEngineeringBaseUrl() string {
 	if client.apiBaseUrl != "" {
 		return client.apiBaseUrl
 	}
 	return DEFAULT_BASE_URL
 }
 
-// Get current session ID
-func (client *DialogFlowClient) GetSessionID() string {
-	return client.sessionID
-}
-
-// Set a new seesion ID
-func (client *DialogFlowClient) SetSessionID(sessionID string) {
-	client.sessionID = sessionID
-}
