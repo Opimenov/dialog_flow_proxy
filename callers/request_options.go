@@ -1,4 +1,4 @@
-package models
+package callers
 
 type RequestOptions struct {
 	URI         string

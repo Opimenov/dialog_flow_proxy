@@ -20,7 +20,7 @@ func askLeoHandler(w http.ResponseWriter, r *http.Request)  {
 }
 
 func askAgent(text string) (answer string) {
-	err, client := NewDialogFlowClient(Options{})
+	err, client := NewDialogFlowClient(AgentClientOptions{})
 	if err != nil {
 		log.Fatal(err)
 	}

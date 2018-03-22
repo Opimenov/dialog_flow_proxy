@@ -7,20 +7,8 @@ import (
 	. "leo/models/caller_options"
 	. "leo/models/queries"
 	. "leo/models/responses"
-	. "leo/models"
-	"bytes"
-	"io/ioutil"
-	"net/http"
 	"libs/go.uuid"
 )
-
-type Request struct {
-	URI         string
-	Method      string
-	Headers     map[string]string
-	Body        interface{}
-	QueryParams map[string]string
-}
 
 type DialogFlowClient struct {
 	accessToken string
@@ -31,7 +19,7 @@ type DialogFlowClient struct {
 }
 
 // Create API.AI instance
-func NewDialogFlowClient(options Options) (error, *DialogFlowClient) {
+func NewDialogFlowClient(options AgentClientOptions) (error, *DialogFlowClient) {
 	//if (reflect.DeepEqual(options, Options{}) || options.AccessToken == "") {
 	//	return errors.New("access token is required for new ApiAiClient instance"), nil
 	//}
@@ -84,44 +72,6 @@ func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions Requ
 
 	return request
 }
-
-// Execute an HTTP request
-func (r *Request) Perform() ([]byte, error) {
-	var data []byte
-	client := &http.Client{}
-
-	req, err := http.NewRequest(r.Method, r.URI, nil)
-
-	if r.Method != "GET" {
-		b := new(bytes.Buffer)
-		json.NewEncoder(b).Encode(r.Body)
-		req, err = http.NewRequest(r.Method, r.URI, b)
-	}
-
-	for k, v := range r.Headers {
-		req.Header.Add(k, v)
-	}
-
-	query := req.URL.Query()
-	for key, value := range r.QueryParams {
-		query.Add(key, value)
-	}
-	req.URL.RawQuery = query.Encode()
-
-	if err != nil {
-		return data, err
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		return data, err
-	}
-
-	defer resp.Body.Close()
-
-	return ioutil.ReadAll(resp.Body)
-}
-
 
 // Takes natural language text and information as query parameters and returns information as JSON
 func (client *DialogFlowClient) QueryFindRequest(query AgentQuery) (QueryResponse, error) {

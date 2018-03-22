@@ -1,6 +1,6 @@
 package caller_options
 
-type Options struct {
+type AgentClientOptions struct {
 	AccessToken string
 	ApiLang     string
 	ApiVersion  string
