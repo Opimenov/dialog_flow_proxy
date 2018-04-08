@@ -74,8 +74,8 @@ func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions Requ
 }
 
 // Takes natural language text and information as query parameters and returns information as JSON
-func (client *DialogFlowClient) AgentQueryFindRequest(query AgentQuery) (QueryResponse, error) {
-	var response QueryResponse
+func (client *DialogFlowClient) AgentQueryFindRequest(query AgentQuery) (AgentQueryResponse, error) {
+	var response AgentQueryResponse
 
 	if reflect.DeepEqual(query, AgentQuery{}) {
 		return response, errors.New("query cannot be empty")
@@ -113,8 +113,8 @@ func (client *DialogFlowClient) AgentQueryFindRequest(query AgentQuery) (QueryRe
 }
 
 // Takes natural language text and information as JSON in the POST body and returns information as JSON
-func (client *DialogFlowClient) AgentQueryCreateRequest(query AgentQuery) (QueryResponse, error) {
-	var response QueryResponse
+func (client *DialogFlowClient) AgentQueryCreateRequest(query AgentQuery) (AgentQueryResponse, error) {
+	var response AgentQueryResponse
 
 	if reflect.DeepEqual(query, AgentQuery{}) {
 		return response, errors.New("query cannot be empty")

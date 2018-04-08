@@ -5,7 +5,7 @@ import (
  ."leo/models/dialog_flow_objects"
 )
 
-type QueryResponse struct {
+type AgentQueryResponse struct {
 	ID        string    `json:"id,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
 	Lang      string    `json:"lang,omitempty"`

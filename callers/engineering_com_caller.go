@@ -14,7 +14,6 @@ type EngineeringClient struct {
 	apiBaseUrl  string
 }
 
-// Create API.AI instance
 func NewEngineeringClient(options EngineeringClientOptions) (error, *EngineeringClient) {
 	client := &EngineeringClient{}
 	client.accessToken = options.AccessToken
@@ -47,9 +46,8 @@ func NewEngineeringRequest(client *EngineeringClient, overridedRequestOptions Re
 	return request
 }
 
-// Takes natural language text and information as query parameters and returns information as JSON
-func (client *EngineeringClient) EngineeringQueryFindRequest(query AgentQuery) (QueryResponse, error) {
-	var response QueryResponse
+func (client *EngineeringClient) EngineeringQueryFindRequest(query AgentQuery) (AgentQueryResponse, error) {
+	var response AgentQueryResponse
 
 	if reflect.DeepEqual(query, AgentQuery{}) {
 		return response, errors.New("query cannot be empty")
@@ -74,11 +72,9 @@ func (client *EngineeringClient) EngineeringQueryFindRequest(query AgentQuery) (
 	return response, err
 }
 
-// Takes natural language text and information as JSON in the POST body and returns information as JSON
-func (client *EngineeringClient) QueryCreateRequest(query AgentQuery) (QueryResponse, error) {
-	var response QueryResponse
-
-	if reflect.DeepEqual(query, AgentQuery{}) {
+func (client *EngineeringClient) QueryCreateRequest(query EngineeringQuery) (AgentQueryResponse, error) {
+	var response AgentQueryResponse
+	if reflect.DeepEqual(query, EngineeringQuery{}) {
 		return response, errors.New("query cannot be empty")
 	}
 
@@ -100,16 +96,13 @@ func (client *EngineeringClient) QueryCreateRequest(query AgentQuery) (QueryResp
 	return response, err
 }
 
-// GET API.AI access token
 func (client *EngineeringClient) GetEngineeringAccessToken() string {
 	return client.accessToken
 }
 
-// Get api base url
 func (client *EngineeringClient) GetEngineeringBaseUrl() string {
 	if client.apiBaseUrl != "" {
 		return client.apiBaseUrl
 	}
 	return DEFAULT_BASE_URL
 }
-
