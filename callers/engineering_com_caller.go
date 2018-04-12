@@ -7,6 +7,7 @@ import (
 	. "leo/models/caller_options"
 	. "leo/models/queries"
 	. "leo/models/responses"
+	"fmt"
 )
 
 type EngineeringClient struct {
@@ -106,3 +107,9 @@ func (client *EngineeringClient) GetEngineeringBaseUrl() string {
 	}
 	return DEFAULT_BASE_URL
 }
+
+func CreateProject(proj_name string) (answer EngineeringQueryResponse) {
+	fmt.Println("creating project with name " + proj_name)
+	return
+}
+
