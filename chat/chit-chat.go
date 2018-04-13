@@ -41,16 +41,16 @@ func (h *handler) polling(w http.ResponseWriter, r *http.Request) {
 
 	//exctract only what user entered
 	user_text := strings.TrimSpace(strings.Split(h.message, ":")[1])
-	fmt.Println(user_text)
+	//fmt.Println(user_text)
 	//ask agent and get only the text response
 	response := (listener.AskAgent(user_text)).Result.Fulfillment.Speech
-	fmt.Println(response)
+	//fmt.Println(response)
 	h.agent_response = response
 
 
-	fmt.Println("polling")
+	//fmt.Println("polling")
 	fmt.Fprintf(w, h.message+
-	"<p align="+"right"+"><b>LEO</b> : "+h.agent_response+"</p>") //writes a response to the screen
+	"<p align="+"right"+"><br><br><b>LEO</b> : "+h.agent_response+"</p>") //writes a response to the screen
 	//fmt.Fprintf(w, "<b>LEO</b> : "+h.agent_response)
 
 }
