@@ -12,7 +12,6 @@ import (
 
 const CREATE_PROJECT string = "project.creating"//agent defined value
 
-//TODO:should move all functions from main that listen to incoming queries to this file
 
 func AskLeoHandler(w http.ResponseWriter, r *http.Request) {
 	//get what user said from the query. Works only with GET keyword
