@@ -8,10 +8,13 @@ import (
 	. "leo/models/caller_options"
 	. "leo/models/responses"
 	"net/http"
+	"github.com/ajanicij/goduckgo/goduckgo"
+	"os"
 )
 
-const CREATE_PROJECT string = "project.creating"//agent defined value
-
+//agent defined values
+const CREATE_PROJECT string = "project.creating"
+const SEARCH_WEB string = "web.search"
 
 func AskLeoHandler(w http.ResponseWriter, r *http.Request) {
 	//get what user said from the query. Works only with GET keyword
@@ -28,12 +31,36 @@ func AskLeoHandler(w http.ResponseWriter, r *http.Request) {
 		// https://golang.org/ref/spec#Type_assertions
 		proj_name := response.Result.Parameters["Project"].(string)
 		CreateProject(proj_name)
+	} else if SEARCH_WEB == response.Result.Action {
+		//if action in result field equals to web.search
+		//extract query from parameters { "q" : <what to search for> }
+		//and do a web search
+		searchFor := response.Result.Parameters["q"].(string)
+		webRes := DoWebSearch(searchFor)
+		fmt.Fprintf(w, webRes)
+		 //webRes
 	}
 
 	//this is what needs to send to the user
 	fmt.Fprintf(w, response.Result.Fulfillment.Speech)
+	//return response.Result.Fulfillment.Speech
 }
-func AskAgent(text string) (answer AgentQueryResponse) {
+
+func DoWebSearch(query string) string {
+	//q := "https://api.duckduckgo.com/?q="+query+
+	//	"&format=json&pretty=1"
+	m, err := goduckgo.Query(query)
+	fmt.Println("message " + m.AbstractText)
+	CheckError(err)
+	if len(m.RelatedTopics) != 0 {
+		return "Here is what I found on the internet::  " + m.RelatedTopics[0].Text +
+			".  Check out this link for more info -> "+
+				m.AbstractURL
+	}
+	return "it seems that wikipedia doesn't know anything about this"
+}
+
+func AskAgent(text string) AgentQueryResponse {
 	err, client := NewDialogFlowClient(AgentClientOptions{})
 	if err != nil {
 		log.Fatal(err)
@@ -64,4 +91,11 @@ func AskAgent(text string) (answer AgentQueryResponse) {
 	var res AgentQueryResponse
 	err = json.Unmarshal(data, &res)
 	return res
+}
+
+func CheckError(e error) {
+	if e != nil {
+		fmt.Println(e.Error())
+		os.Exit(-1)
+	}
 }

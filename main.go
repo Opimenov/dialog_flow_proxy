@@ -9,8 +9,6 @@ import (
 	"fmt"
 )
 
-const ENABLE_CHAT = true
-
 func main() {
 	//declare few flags to be used with command line args
 	enableChat := flag.Bool("chat", false,"used to enable chat endpoint")
