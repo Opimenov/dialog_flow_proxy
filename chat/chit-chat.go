@@ -62,6 +62,7 @@ func (h *Handler) polling(w http.ResponseWriter, r *http.Request) {
 		//extract query from parameters { "q" : <what to search for> }
 		//and do a web search
 		searchFor := response.Result.Parameters["q"].(string)
+		//fmt.Println(searchFor)
 		webRes := listener.DoWebSearch(searchFor)
 		fmt.Fprintf(w, h.message+
 			"<p align="+ "right"+ "><br><br><b>LEO</b> : "+

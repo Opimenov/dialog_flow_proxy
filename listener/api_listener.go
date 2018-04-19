@@ -50,7 +50,7 @@ func DoWebSearch(query string) string {
 	//q := "https://api.duckduckgo.com/?q="+query+
 	//	"&format=json&pretty=1"
 	m, err := goduckgo.Query(query)
-	fmt.Println("message " + m.AbstractText)
+	//fmt.Println("here is what you search for :" + query)
 	CheckError(err)
 	if len(m.RelatedTopics) != 0 {
 		return "Here is what I found on the internet::  " + m.RelatedTopics[0].Text +
