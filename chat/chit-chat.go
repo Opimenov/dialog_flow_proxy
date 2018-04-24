@@ -51,11 +51,10 @@ func (h *Handler) polling(w http.ResponseWriter, r *http.Request) {
 		proj_name := response.Result.Parameters["Project"].(string)
 		callers.CreateProject(proj_name)
 		//writes a response to the screen
-		fmt.Fprintf(w, h.message+
-			"<p align="+ "right"+
-				"><br><br><b>LEO</b> : "+
-					response.Result.Fulfillment.Speech+ "</p>")
-
+		fmt.Fprintf(w, "<p align=" + "right"+
+			"><br><br><b>LEO</b> : "+
+			response.Result.Fulfillment.Speech+ "</p>"+
+			h.message)
 
 	} else if "web.search" == response.Result.Action {
 		//if action in result field equals to web.search
@@ -64,18 +63,16 @@ func (h *Handler) polling(w http.ResponseWriter, r *http.Request) {
 		searchFor := response.Result.Parameters["q"].(string)
 		//fmt.Println(searchFor)
 		webRes := listener.DoWebSearch(searchFor)
-		fmt.Fprintf(w, h.message+
-			"<p align="+ "right"+ "><br><br><b>LEO</b> : "+
-				webRes+ "</p>")
+		fmt.Fprintf(w, "<p align=" + "right" + "><br><br><b>LEO</b> : "+
+			webRes+ "</p>"+ h.message)
 		//writes a response to the screen
 
 	} else {
-		fmt.Fprintf(w, h.message+
-			"<p align="+ "right"+
+		fmt.Fprintf(w, "<p align=" + "right"+
 			"><br><br><b>LEO</b> : "+
-			response.Result.Fulfillment.Speech+ "</p>")
+			response.Result.Fulfillment.Speech+ "</p>"+
+			h.message)
 	}
-
 }
 
 func Start_chat() {
