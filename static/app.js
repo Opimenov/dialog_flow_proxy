@@ -1,10 +1,10 @@
+//mix of jquery and angular. Used only for demo chat purposes
 var app = angular.module("GoChatApp", []);
 app.controller("MainController", function($scope, $http) {
 
     $scope.username = ""
     $scope.chatLines = []
     $scope.typedInput = ""
-
 
     $scope.getNewData = function()
     {

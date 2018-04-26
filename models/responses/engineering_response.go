@@ -1,12 +1,12 @@
+//Contains structs that map to json strings received as responses
 package responses
 
 import (
 	"time"
 	."leo/models/dialog_flow_objects"
 )
-//TODO find out what we are getting in response from engineering.com and
-// create appropriate struct
 
+//Contains fields that maps to engineering.com response format
 type EngineeringQueryResponse struct {
 	ID        string    `json:"id,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
