@@ -1,5 +1,7 @@
+//Contains a struct to model particular type of dialog flow object
 package dialog_flow_objects
 
+//Dialog flow specific object
 type IntentAgent struct {
 	ID             string       `json:"id,omitempty"`
 	Name           string       `json:"name,omitempty"`
@@ -11,6 +13,7 @@ type IntentAgent struct {
 	FallbackIntent bool         `json:"fallbackIntent,omitempty"`
 }
 
+//Dialog flow specific object
 type ContextOut struct {
 	Name     string `json:"name,omitempty"`
 	Lifespan int    `json:"lifespan,omitempty"`

@@ -1,5 +1,7 @@
+//Contains functionality to perform api calls
 package callers
 
+//Defines a holder for request options.
 type RequestOptions struct {
 	URI         string
 	Method      string

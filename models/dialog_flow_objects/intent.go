@@ -1,5 +1,7 @@
+//Contains a struct to model particular type of dialog flow object
 package dialog_flow_objects
 
+//Dialog flow specific object
 type Intent struct {
 	ID                    string         `json:"id,omitempty"`
 	Name                  string         `json:"name,omitempty"`
@@ -16,18 +18,19 @@ type Intent struct {
 	Events                []Event        `json:"events,omitempty"`
 }
 
+//Dialog flow specific object
 type CortanaCommand struct {
 	NavigationOrService string `json:"navigationOrService,omitempty"`
 	Target              string `json:"target,omitempty"`
 }
-
+//Dialog flow specific object
 type UserSay struct {
 	ID         string `json:"userSays,omitempty"`
 	Data       Data   `json:"data,omitempty"`
 	IsTemplate bool   `json:"isTemplate,omitempty"`
 	Count      int    `json:"count,omitempty"`
 }
-
+//Dialog flow specific object
 type Response struct {
 	Action           string      `json:"action,omitempty"`
 	ResetContexts    bool        `json:"resetContexts,omitempty"`
@@ -35,7 +38,7 @@ type Response struct {
 	Parameters       []Parameter `json:"parameters,omitempty"`
 	Messages         []Message   `json:"message,omitempty"`
 }
-
+//Dialog flow specific object
 type Data struct {
 	Text        string `json:"text,omitempty"`
 	Meta        string `json:"meta,omitempty"`

@@ -18,11 +18,8 @@ type DialogFlowClient struct {
 	sessionID   string
 }
 
-// Create API.AI instance
+// Creates a DialogFlowClient instance. If none AgentClientOptions are provided uses default values
 func NewDialogFlowClient(options AgentClientOptions) (error, *DialogFlowClient) {
-	//if (reflect.DeepEqual(options, Options{}) || options.AccessToken == "") {
-	//	return errors.New("access token is required for new ApiAiClient instance"), nil
-	//}
 	client := &DialogFlowClient{}
 
 	client.accessToken = options.AccessToken
@@ -47,7 +44,7 @@ func NewDialogFlowClient(options AgentClientOptions) (error, *DialogFlowClient) 
 
 	client.sessionID = options.SessionID
 	if client.sessionID == "" {
-		u,_ := uuid.NewV4()
+		u, _ := uuid.NewV4()
 		client.sessionID = u.String()
 	}
 
@@ -73,46 +70,8 @@ func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions Requ
 	return request
 }
 
-// Takes natural language text and information as query parameters and returns information as JSON
-func (client *DialogFlowClient) AgentQueryFindRequest(query AgentQuery) (AgentQueryResponse, error) {
-	var response AgentQueryResponse
-
-	if reflect.DeepEqual(query, AgentQuery{}) {
-		return response, errors.New("query cannot be empty")
-	}
-
-	if query.V == "" {
-		query.V = client.GetAgentApiVersion()
-	}
-
-	if query.Lang == "" {
-		query.Lang = client.GetApiLang()
-	}
-
-	if query.SessionID == "" {
-		query.SessionID = client.GetSessionID()
-	}
-
-	request := NewDialogFlowRequest(
-		client,
-		RequestOptions{
-			URI:         client.GetAgentBaseUrl() + "query",
-			Method:      "GET",
-			Body:        nil,
-			QueryParams: query.ToMap(),
-		},
-	)
-
-	data, err := request.Perform()
-	if err != nil {
-		return response, err
-	}
-
-	err = json.Unmarshal(data, &response)
-	return response, err
-}
-
-// Takes natural language text and information as JSON in the POST body and returns information as JSON
+//Performs an http request using <this> DialogFlowClient and provided AgentQuery struct,
+//returns response data along with any errors.
 func (client *DialogFlowClient) AgentQueryCreateRequest(query AgentQuery) (AgentQueryResponse, error) {
 	var response AgentQueryResponse
 
@@ -137,7 +96,8 @@ func (client *DialogFlowClient) AgentQueryCreateRequest(query AgentQuery) (Agent
 	err = json.Unmarshal(data, &response)
 	return response, err
 }
-// GET API.AI access token
+
+// GET DialogFlow access token
 func (client *DialogFlowClient) GetAgentAccessToken() string {
 	return client.accessToken
 }

@@ -1,3 +1,4 @@
+//Contains an api listener, it's job is to process http requests.
 package listener
 
 import (
@@ -12,10 +13,18 @@ import (
 	"os"
 )
 
-//agent defined values
-const CREATE_PROJECT string = "project.creating"
-const SEARCH_WEB string = "web.search"
+const (
+	//A string describing an action of creating a project as it is defined by DialogFlow agent LEO.
+	CREATE_PROJECT string = "project.creating"
+	//A string describing an action of doing a web search as it is defined by DialogFlow agent LEO.
+	SEARCH_WEB string = "web.search"
+)
 
+//Handles http GET requests received at <askleo> endpoint.
+//Parses user url to extract user query.
+//Sends a request to DialogFlow Leo Agent.
+//Looks for predefined action strings in the Agent's response.
+//Writes a response back based on the Agent's response.
 func AskLeoHandler(w http.ResponseWriter, r *http.Request) {
 	//get what user said from the query. Works only with GET keyword
 	user_text := r.URL.Path[len("/askleo/"):]
@@ -38,10 +47,8 @@ func AskLeoHandler(w http.ResponseWriter, r *http.Request) {
 		searchFor := response.Result.Parameters["q"].(string)
 		webRes := DoWebSearch(searchFor)
 		fmt.Fprintf(w, webRes)
-		 //webRes
 	}
-
-	//this is what needs to send to the user
+	//Send text response to the user
 	fmt.Fprintf(w, response.Result.Fulfillment.Speech)
 	//return response.Result.Fulfillment.Speech
 }
@@ -54,19 +61,27 @@ func DoWebSearch(query string) string {
 	CheckError(err)
 	if len(m.RelatedTopics) != 0 {
 		return "Here is what I found on the internet::  " + m.RelatedTopics[0].Text +
-			".  Check out this link for more info -> "+
-				m.AbstractURL
+			".  Check out this link for more info -> " +
+			m.AbstractURL
 	}
 	return "it seems that wikipedia doesn't know anything about this"
 }
 
+//Makes a GET request to DialogFlow agent using provided text.
+//Creates DialogFlowClient object using default client options.
+//Populates response model struct using response data.
+//NOTE: Uses the same sessionID for every request.
+//POSSIBLE IMPROVEMENTS:
+// 1.Pass DialogFlowClient object as a method parameter (easier to test).
+// 2.Establish a better practice for handling sessionId. Needs to be carefully designed.
+// 3.Might want to switch to POST method if privacy is important.
 func AskAgent(text string) AgentQueryResponse {
+	//TODO pass in NewDialogFlowClient as a method parameter.
 	err, client := NewDialogFlowClient(AgentClientOptions{})
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	//let's start with a simple request
 	request := NewDialogFlowRequest(
 		client,
 		RequestOptions{
@@ -76,6 +91,7 @@ func AskAgent(text string) AgentQueryResponse {
 				client.GetAgentApiVersion() +
 				"&query=" + text + "&lang=" +
 				client.GetApiLang() +
+					//TODO improve sessionId generation and gandling
 				"&sessionId=7413f2c4-2b90-4c43-97a9-b692c6ee2ee5&" +
 				"timezone=America/New_York",
 			Method: "GET",
@@ -88,14 +104,19 @@ func AskAgent(text string) AgentQueryResponse {
 		log.Fatal(err)
 		fmt.Println("performing request failed")
 	}
+	//populate response object with obtained data.
 	var res AgentQueryResponse
 	err = json.Unmarshal(data, &res)
 	return res
 }
 
+//Helper that simply checks if provided error object is nil.
+//If provided error object is nil, prints error message and terminates
+//program execution.
 func CheckError(e error) {
 	if e != nil {
 		fmt.Println(e.Error())
+		//TODO: Implement more graceful way of dealing with errors.
 		os.Exit(-1)
 	}
 }

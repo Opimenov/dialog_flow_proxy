@@ -1,3 +1,4 @@
+//Contains functionality to perform api calls
 package callers
 
 import (
@@ -7,6 +8,7 @@ import (
 	"io/ioutil"
 )
 
+//Generic request model struct
 type Request struct {
 	URI         string
 	Method      string
@@ -15,6 +17,8 @@ type Request struct {
 	QueryParams map[string]string
 }
 
+//Performs a request given on <this> request struct.
+//Returns a response data as a byte array, along with an error object.
 func (r *Request) Perform() ([]byte, error) {
 	var data []byte
 	client := &http.Client{}
