@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba256e23-7fa3-4ecb-8048-d6adf62c95c2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/callers/dialog_flow_api_caller.go" afterPath="$PROJECT_DIR$/callers/dialogflowclient.go" />
-      <change beforePath="$PROJECT_DIR$/callers/engineering_com_caller.go" afterPath="$PROJECT_DIR$/callers/engineeringclient.go" />
-      <change beforePath="$PROJECT_DIR$/callers/request.go" afterPath="$PROJECT_DIR$/callers/request.go" />
-      <change beforePath="$PROJECT_DIR$/callers/request_options.go" afterPath="$PROJECT_DIR$/callers/request_options.go" />
-      <change beforePath="$PROJECT_DIR$/chat/chit-chat.go" afterPath="$PROJECT_DIR$/chat/chit-chat.go" />
-      <change beforePath="$PROJECT_DIR$/listener/api_listener.go" afterPath="$PROJECT_DIR$/listener/api_listener.go" />
-      <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
-      <change beforePath="$PROJECT_DIR$/models/caller_options/dialog_flow_caller_options.go" afterPath="$PROJECT_DIR$/models/caller_options/dialog_flow_caller_options.go" />
-      <change beforePath="$PROJECT_DIR$/models/caller_options/engineering_com_caller_options.go" afterPath="$PROJECT_DIR$/models/caller_options/engineering_com_caller_options.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/context.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/context.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/entity.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/entity.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/entry.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/entry.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/event.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/event.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/intent.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/intent.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/intent_agent.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/intent_agent.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/message.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/message.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/metadata.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/metadata.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/parameter.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/parameter.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/status.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/status.go" />
-      <change beforePath="$PROJECT_DIR$/models/dialog_flow_objects/user_entity.go" afterPath="$PROJECT_DIR$/models/dialog_flow_objects/user_entity.go" />
-      <change beforePath="$PROJECT_DIR$/models/queries/agent_query.go" afterPath="$PROJECT_DIR$/models/queries/agent_query.go" />
-      <change beforePath="$PROJECT_DIR$/models/queries/engineering_query.go" afterPath="$PROJECT_DIR$/models/queries/engineering_query.go" />
-      <change beforePath="$PROJECT_DIR$/models/responses/agent_response.go" afterPath="$PROJECT_DIR$/models/responses/agent_response.go" />
-      <change beforePath="$PROJECT_DIR$/models/responses/engineering_response.go" afterPath="$PROJECT_DIR$/models/responses/engineering_response.go" />
-      <change beforePath="$PROJECT_DIR$/static/mic.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -97,8 +71,8 @@
           <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+                <state relative-caret-position="306">
+                  <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -421,7 +395,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4601227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37627813" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37627813" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4989775" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -765,8 +739,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state relative-caret-position="306">
+          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
           <folding />
         </state>
       </provider>
