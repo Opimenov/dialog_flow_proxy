@@ -24,3 +24,15 @@ After service initialization, to get a simple text response from leo agent go to
     http://<base_url>:8080/askleo/<text_to_be_processed>
 
 Note: <user_entered_text> will be sent using GET method.
+
+To view documentation:
+
+    >>> godoc -http=:6060 -goroot=<path_to_leo_package>
+
+This will display docs at http://localhost:6060/pkg/leo
+If you need to get a text representation of a particular
+page just add:
+
+    ?m=all,text
+    
+to the page url.    

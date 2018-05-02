@@ -1,4 +1,4 @@
-//Holds default values for various API caller options
+//Holds default values for DialogFlow API caller options
 package caller_options
 
 //Contains necessary values to make DialogFlow API call.

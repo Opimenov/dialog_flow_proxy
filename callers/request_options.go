@@ -1,5 +1,3 @@
-//Contains structs and functionality to perform DialogFlow.com and
-// Engineering.com api calls
 package callers
 
 //Defines a holder for request options.

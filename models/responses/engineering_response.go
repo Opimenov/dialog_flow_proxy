@@ -1,4 +1,5 @@
-//Contains structs that define response objects
+//Contains EngineeringQueryResponse struct that defines
+//an engineering.com api response object.
 package responses
 
 import (

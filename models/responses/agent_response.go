@@ -1,4 +1,5 @@
-//Contains structs that define response objects
+//Contains the following structs: AgentQueryResponse, Result, Fullfilment
+//that maps to dialogflow objects.
 package responses
 
 import (

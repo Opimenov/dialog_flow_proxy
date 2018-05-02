@@ -1,5 +1,3 @@
-//Contains structs and functionality to perform DialogFlow.com and
-// Engineering.com api calls
 package callers
 
 import (
@@ -12,7 +10,7 @@ import (
 	"fmt"
 )
 
-//Contains necessary data for making Engineering.com api calls.
+//Defines necessary fields for making Engineering.com api calls.
 type EngineeringClient struct {
 	AccessToken string
 	ApiBaseUrl  string

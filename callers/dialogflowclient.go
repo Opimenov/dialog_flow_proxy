@@ -1,5 +1,5 @@
 //Contains structs and functionality to perform DialogFlow.com and
-// Engineering.com api calls
+//Engineering.com api calls
 package callers
 
 import (
@@ -12,7 +12,7 @@ import (
 	"libs/go.uuid"
 )
 
-//Contains necessary data for making DialogFlow api calls.
+//Defines necessary fields for making DialogFlow api calls.
 type DialogFlowClient struct {
 	AccessToken string
 	ApiLang     string

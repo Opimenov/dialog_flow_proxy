@@ -1,4 +1,4 @@
-//Contains  structs to model some type of query
+//Defines few  structs to model corresponding dialogflow objects.
 package queries
 
 import (

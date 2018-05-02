@@ -92,7 +92,7 @@ func (h *Handler) polling(w http.ResponseWriter, r *http.Request) {
 }
 
 //If -chat option was provided as a command line argument when calling main.go this function
-//start chat app at </chat> endpoint
+//start chat app at:  http://localhost:8080
 func Start_chat() {
 	ch := make(chan bool)
 	h := Handler{wait: ch}

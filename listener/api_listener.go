@@ -1,4 +1,4 @@
-//Contains an api listener, it's job is to process http requests.
+//Contains an api listener, its job is to process http requests.
 package listener
 
 import (

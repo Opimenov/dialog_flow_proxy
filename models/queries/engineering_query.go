@@ -1,4 +1,4 @@
-//Contains structs to model some type of query
+//Defines EngineeringQuery struct to group necessary data for engineering.com api call.
 package queries
 
 import (

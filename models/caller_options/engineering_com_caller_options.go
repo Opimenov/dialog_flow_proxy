@@ -1,4 +1,4 @@
-//Holds default values for various API caller options
+//Holds default values for EngineeringClient API caller options
 package caller_options
 
 //Contains necessary values to make an Engineering.com API call.

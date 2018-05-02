@@ -1,5 +1,3 @@
-//Contains structs and functionality to perform DialogFlow.com and
-// Engineering.com api calls
 package callers
 
 import (
@@ -9,7 +7,7 @@ import (
 	"io/ioutil"
 )
 
-//Generic request model struct
+//Generic request model struct, that defines necessary fields.
 type Request struct {
 	URI         string
 	Method      string

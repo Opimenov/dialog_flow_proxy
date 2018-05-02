@@ -1,6 +1,6 @@
-//Execution starting point.
-// Contains a main method that starts web service and
-// assigns handlers to different endpoints.
+//This is a starter project for a proxy to https://dialogflow.com/.
+//Contains a main method that starts web service and
+//assigns handlers to different endpoints.
 package main
 
 import (
