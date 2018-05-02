@@ -1,4 +1,4 @@
-//Contains structs that map to json strings received as responses
+//Contains structs that define response objects
 package responses
 
 import (
@@ -6,8 +6,11 @@ import (
 	."leo/models/dialog_flow_objects"
 )
 
-//Contains fields that maps to engineering.com response format
+//Contains fields that maps to engineering.com response format:
+// ID, Timestamp, Lang, Result, Status, SessionID
 type EngineeringQueryResponse struct {
+	//TODO. Since we didn't use Engineering.com api we don't know the
+	//TODO exact response format. So this may need to be modified.
 	ID        string    `json:"id,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
 	Lang      string    `json:"lang,omitempty"`

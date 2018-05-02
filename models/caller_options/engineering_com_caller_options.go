@@ -1,4 +1,4 @@
-//Holds default values for the Engineering.com API caller options
+//Holds default values for various API caller options
 package caller_options
 
 //Contains necessary values to make an Engineering.com API call.
@@ -7,6 +7,7 @@ type EngineeringClientOptions struct {
 	ApiBaseUrl string
 }
 
+//Defines default EngineeringClientOptions values
 //AccessToken is associated with the user of Engineering.com.
 //ApiBaseURL is Engineering.com API end point.
 const (

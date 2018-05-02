@@ -24,6 +24,8 @@ const (
 //Parses user url to extract user query.
 //Sends a request to DialogFlow Leo Agent.
 //Looks for predefined action strings in the Agent's response.
+//Either "project.creating" or "web.search".
+//Depending on obtained Action object makes necessary API calls.
 //Writes a response back based on the Agent's response.
 func AskLeoHandler(w http.ResponseWriter, r *http.Request) {
 	//get what user said from the query. Works only with GET keyword
@@ -53,6 +55,11 @@ func AskLeoHandler(w http.ResponseWriter, r *http.Request) {
 	//return response.Result.Fulfillment.Speech
 }
 
+//Makes an api call using duckduckgo search engine api. Easy to use, doesn't
+//collect information, never uses third party cookies to target ads.
+//To make a request it uses github.com/ajanicij/goduckgo library.
+//From the returned result it extracts first related topic and returns it in a text
+//form along with the url with full information for further readings.
 func DoWebSearch(query string) string {
 	//q := "https://api.duckduckgo.com/?q="+query+
 	//	"&format=json&pretty=1"

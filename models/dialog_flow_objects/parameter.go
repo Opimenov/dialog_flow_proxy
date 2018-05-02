@@ -1,7 +1,8 @@
-//Contains a struct to model particular type of dialog flow object
+//Contains structs to model particular type of dialog flow object
 package dialog_flow_objects
 
-//Dialog flow specific object
+//Dialog flow specific object Parameter.
+//https://dialogflow.com/docs/actions-and-parameters
 type Parameter struct {
 	Name         string   `json:"name,omitempty"`
 	Value        string   `json:"value,omitempty"`

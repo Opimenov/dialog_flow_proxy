@@ -1,4 +1,5 @@
-//Contains functionality to perform  engineering.com api calls
+//Contains structs and functionality to perform DialogFlow.com and
+// Engineering.com api calls
 package callers
 
 import (
@@ -11,21 +12,23 @@ import (
 	"fmt"
 )
 
+//Contains necessary data for making Engineering.com api calls.
 type EngineeringClient struct {
-	accessToken string
-	apiBaseUrl  string
+	AccessToken string
+	ApiBaseUrl  string
 }
 
-//Creates new Engineering.com client using provided options, or default values if none provided.
+//Creates new Engineering.com client using provided options,
+// or default values if none provided.
 func NewEngineeringClient(options EngineeringClientOptions) (error, *EngineeringClient) {
 	client := &EngineeringClient{}
-	client.accessToken = options.AccessToken
-	if client.accessToken == "" {
-		client.accessToken = API_KEY
+	client.AccessToken = options.AccessToken
+	if client.AccessToken == "" {
+		client.AccessToken = API_KEY
 	}
-	client.apiBaseUrl = options.ApiBaseUrl
-	if client.apiBaseUrl == "" {
-		client.apiBaseUrl = DEFAULT_BASE_URL
+	client.ApiBaseUrl = options.ApiBaseUrl
+	if client.ApiBaseUrl == "" {
+		client.ApiBaseUrl = DEFAULT_BASE_URL
 	}
 	return nil, client
 }
@@ -49,7 +52,8 @@ func NewEngineeringRequest(client *EngineeringClient, overridedRequestOptions Re
 	return request
 }
 
-//Makes a request and returns a result in a form of an AgentQueryResponse. Uses POST method.
+//Makes a request and returns a result in a form of an AgentQueryResponse.
+// Uses POST method.
 func (client *EngineeringClient) QueryCreateRequest(query EngineeringQuery) (AgentQueryResponse, error) {
 	var response AgentQueryResponse
 	if reflect.DeepEqual(query, EngineeringQuery{}) {
@@ -75,16 +79,17 @@ func (client *EngineeringClient) QueryCreateRequest(query EngineeringQuery) (Age
 }
 
 func (client *EngineeringClient) GetEngineeringAccessToken() string {
-	return client.accessToken
+	return client.AccessToken
 }
 
 func (client *EngineeringClient) GetEngineeringBaseUrl() string {
-	if client.apiBaseUrl != "" {
-		return client.apiBaseUrl
+	if client.ApiBaseUrl != "" {
+		return client.ApiBaseUrl
 	}
 	return DEFAULT_BASE_URL
 }
-
+//Should make and API call to Engineering.com to create a project.
+//All the necessary pieces are ready, just need to put it together.
 func CreateProject(proj_name string) (answer EngineeringQueryResponse) {
 	//TODO provided that there is engineering.com API access token available implement object creation.
 	//Infrastructure is in place just put it together.

@@ -1,4 +1,4 @@
-//Contains a struct to model particular type of query
+//Contains  structs to model some type of query
 package queries
 
 import (
@@ -23,7 +23,7 @@ type AgentQuery struct {
 	OriginalRequest OriginalRequest `json:"originalRequest,omitempty"`
 }
 
-//defines a location struct with two floats for location coordinates
+//Defines a location struct with two floats for location coordinates.
 type Location struct {
 	Latitude  float32 `json:"latitude,omitempty"`
 	Longitude float32 `json:"longitude,omitempty"`

@@ -1,4 +1,4 @@
-//Contains structs that map to json strings received as responses
+//Contains structs that define response objects
 package responses
 
 import (

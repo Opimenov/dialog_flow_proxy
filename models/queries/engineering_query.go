@@ -1,4 +1,4 @@
-//Contains a struct to model particular type of query
+//Contains structs to model some type of query
 package queries
 
 import (

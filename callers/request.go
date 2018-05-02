@@ -1,4 +1,5 @@
-//Contains functionality to perform api calls
+//Contains structs and functionality to perform DialogFlow.com and
+// Engineering.com api calls
 package callers
 
 import (

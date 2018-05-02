@@ -1,4 +1,5 @@
-//Very basic chat. Only for testing and demo purposes.
+//Very basic chat. Only for testing and demo purposes. It has a single window
+//for message display and a text entry field along with a send button.
 package chat
 
 import (
@@ -10,12 +11,13 @@ import (
 )
 
 type Handler struct {
-	wait           chan bool
-	message        string
-	agent_response string
+	wait          chan bool
+	message       string
+	agentResponse string
 }
 
-//Handler function for </chat> endpoint. If GET used calls polling method, else broadcast
+//Handler function for </chat> endpoint.
+//If GET used calls polling method, else broadcast.
 func (h *Handler) chatHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":

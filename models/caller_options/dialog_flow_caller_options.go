@@ -1,4 +1,4 @@
-//Holds default values for the DialogFlow.com API caller options
+//Holds default values for various API caller options
 package caller_options
 
 //Contains necessary values to make DialogFlow API call.
@@ -29,7 +29,7 @@ var AVAILABLE_LANGUAGES = map[string]string{
 	"PT":    "pt",
 }
 
-//Defines default AgentClientOptions
+//Defines default AgentClientOptions values
 const (
 	//DialogFlow implementation version
 	VERSION             = "2.0.0-beta.20"

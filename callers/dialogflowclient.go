@@ -1,3 +1,5 @@
+//Contains structs and functionality to perform DialogFlow.com and
+// Engineering.com api calls
 package callers
 
 import (
@@ -10,42 +12,44 @@ import (
 	"libs/go.uuid"
 )
 
+//Contains necessary data for making DialogFlow api calls.
 type DialogFlowClient struct {
-	accessToken string
-	apiLang     string
-	apiVersion  string
-	apiBaseUrl  string
-	sessionID   string
+	AccessToken string
+	ApiLang     string
+	ApiVersion  string
+	ApiBaseUrl  string
+	SessionID   string
 }
 
-// Creates a DialogFlowClient instance. If none AgentClientOptions are provided uses default values
+// Creates a DialogFlowClient instance.
+// If none AgentClientOptions are provided uses default values
 func NewDialogFlowClient(options AgentClientOptions) (error, *DialogFlowClient) {
 	client := &DialogFlowClient{}
 
-	client.accessToken = options.AccessToken
-	if client.accessToken == "" {
-		client.accessToken = API_KEY
+	client.AccessToken = options.AccessToken
+	if client.AccessToken == "" {
+		client.AccessToken = API_KEY
 	}
 
-	client.apiBaseUrl = options.ApiBaseUrl
-	if client.apiBaseUrl == "" {
-		client.apiBaseUrl = DEFAULT_BASE_URL
+	client.ApiBaseUrl = options.ApiBaseUrl
+	if client.ApiBaseUrl == "" {
+		client.ApiBaseUrl = DEFAULT_BASE_URL
 	}
 
-	client.apiLang = options.ApiLang
-	if client.apiLang == "" {
-		client.apiLang = DEFAULT_CLIENT_LANG
+	client.ApiLang = options.ApiLang
+	if client.ApiLang == "" {
+		client.ApiLang = DEFAULT_CLIENT_LANG
 	}
 
-	client.apiVersion = options.ApiVersion
-	if client.apiVersion == "" {
-		client.apiVersion = DEFAULT_API_VERSION
+	client.ApiVersion = options.ApiVersion
+	if client.ApiVersion == "" {
+		client.ApiVersion = DEFAULT_API_VERSION
 	}
 
-	client.sessionID = options.SessionID
-	if client.sessionID == "" {
+	client.SessionID = options.SessionID
+	if client.SessionID == "" {
 		u, _ := uuid.NewV4()
-		client.sessionID = u.String()
+		client.SessionID = u.String()
 	}
 
 	return nil, client
@@ -70,7 +74,8 @@ func NewDialogFlowRequest(client *DialogFlowClient, overridedRequestOptions Requ
 	return request
 }
 
-//Performs an http request using <this> DialogFlowClient and provided AgentQuery struct,
+//Performs an http request using <this> DialogFlowClient
+// and provided AgentQuery struct,
 //returns response data along with any errors.
 func (client *DialogFlowClient) AgentQueryCreateRequest(query AgentQuery) (AgentQueryResponse, error) {
 	var response AgentQueryResponse
@@ -97,41 +102,41 @@ func (client *DialogFlowClient) AgentQueryCreateRequest(query AgentQuery) (Agent
 	return response, err
 }
 
-// GET DialogFlow access token
+//Returns DialogFlow access token
 func (client *DialogFlowClient) GetAgentAccessToken() string {
-	return client.accessToken
+	return client.AccessToken
 }
 
-// GET dialog_flow version
+//Returns dialog_flow version
 func (client *DialogFlowClient) GetAgentApiVersion() string {
-	if client.apiVersion != "" {
-		return client.apiVersion
+	if client.ApiVersion != "" {
+		return client.ApiVersion
 	}
 	return DEFAULT_API_VERSION
 }
 
-// GET api language
+//Returns api language
 func (client *DialogFlowClient) GetApiLang() string {
-	if client.apiLang != "" {
-		return client.apiLang
+	if client.ApiLang != "" {
+		return client.ApiLang
 	}
 	return DEFAULT_CLIENT_LANG
 }
 
-// Get api base url
+//Returns base url
 func (client *DialogFlowClient) GetAgentBaseUrl() string {
-	if client.apiBaseUrl != "" {
-		return client.apiBaseUrl
+	if client.ApiBaseUrl != "" {
+		return client.ApiBaseUrl
 	}
 	return DEFAULT_BASE_URL
 }
 
-// Get current session ID
+//Returns current session ID
 func (client *DialogFlowClient) GetSessionID() string {
-	return client.sessionID
+	return client.SessionID
 }
 
-// Set a new seesion ID
+// Sets a new seesion ID
 func (client *DialogFlowClient) SetSessionID(sessionID string) {
-	client.sessionID = sessionID
+	client.SessionID = sessionID
 }
