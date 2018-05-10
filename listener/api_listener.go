@@ -10,7 +10,7 @@ import (
 	. "leo/models/responses"
 	"net/http"
 	"github.com/ajanicij/goduckgo/goduckgo"
-	"os"
+	"leo/util"
 )
 
 const (
@@ -65,7 +65,7 @@ func DoWebSearch(query string) string {
 	//	"&format=json&pretty=1"
 	m, err := goduckgo.Query(query)
 	//fmt.Println("here is what you search for :" + query)
-	CheckError(err)
+	util.CheckError(err)
 	if len(m.RelatedTopics) != 0 {
 		return "Here is what I found on the internet::  " + m.RelatedTopics[0].Text +
 			".  Check out this link for more info -> " +
@@ -117,13 +117,3 @@ func AskAgent(text string) AgentQueryResponse {
 	return res
 }
 
-//Helper that simply checks if provided error object is nil.
-//If provided error object is nil, prints error message and terminates
-//program execution.
-func CheckError(e error) {
-	if e != nil {
-		fmt.Println(e.Error())
-		//TODO: Implement more graceful way of dealing with errors.
-		os.Exit(-1)
-	}
-}

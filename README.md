@@ -1,7 +1,7 @@
 This is a starter project for a proxy to https://dialogflow.com/
 To start call:
 
-    >>> go run  <path_to_go>/go/src/leo/main.go
+    >>> go run  <path_to_go>/go/src/leo/main.go <flags>
 
 To enable demo chat at http://<base_url>:8080 use flag: -chat
 
@@ -36,3 +36,13 @@ page just add:
     ?m=all,text
     
 to the page url.    
+
+Dependencies:
+    
+1. UUID package for Go language. To install run:
+   
+       go get github.com/satori/go.uuid
+       
+2. Go package for DuckDuckGo Instant Answer API. To install run:
+
+       go get -u github.com/ajanicij/goduckgo
