@@ -98,7 +98,7 @@ func AskAgent(text string) AgentQueryResponse {
 				client.GetAgentApiVersion() +
 				"&query=" + text + "&lang=" +
 				client.GetApiLang() +
-					//TODO improve sessionId generation and gandling
+					//TODO improve sessionId generation and handling
 				"&sessionId=7413f2c4-2b90-4c43-97a9-b692c6ee2ee5&" +
 				"timezone=America/New_York",
 			Method: "GET",
