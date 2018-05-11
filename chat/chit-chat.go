@@ -97,5 +97,5 @@ func Start_chat() {
 	ch := make(chan bool)
 	h := Handler{wait: ch}
 	http.HandleFunc("/chat", h.chatHandler)
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.Handle("/", http.FileServer(http.Dir("./chat/static")))
 }
